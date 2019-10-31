@@ -1,0 +1,104 @@
+﻿@model LabProject.Models.ViewModel.VMLabDetails
+
+@{
+    ViewBag.Title = "Lab Registration";
+
+}
+
+<div class="row">
+    <div class="col-sm-3"><h2> Lab Registration</h2></div><div class="col-sm-3"></div></div>
+    @using (Html.BeginForm("Create", "Lab"))
+    {
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+
+                <div class="form-group">
+                    <label for="LabName">Lab Name</label>
+                    @Html.TextBoxFor(x => x.LabName, new { @class = "form-control", @placeholder = "Lab Name" })
+                    @Html.ValidationMessageFor(x => x.LabName, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+                    <label for="LabOwnerName"> Lab Owner Name</label>
+                    @Html.TextBoxFor(x => x.LabOwnerName, new { @class = "form-control", @placeholder = "Lab Owner Name" })
+                    @Html.ValidationMessageFor(x => x.LabOwnerName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="Email1">Email</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="ContactNumber">Contact Number</label>
+                    @Html.TextBoxFor(x => x.ContactNumber, new { @class = "form-control", @placeholder = "Contact Number" })
+                    @Html.ValidationMessageFor(x => x.ContactNumber, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label for="Add1">Add1</label>
+                    @Html.TextBoxFor(x => x.Add1, new { @class = "form-control", @placeholder = "Address1" })
+                   
+                </div>
+                <div class="form-group">
+                    <label for="Add2">Add2</label>
+                    @Html.TextBoxFor(x => x.Add2, new { @class = "form-control", @placeholder = "Address2" })
+                    
+                </div>
+                <div class="form-group">
+                    <label for="Add3">Add3</label>
+                    @Html.TextBoxFor(x => x.Add3, new { @class = "form-control", @placeholder = "Address3" })
+                </div>
+
+
+
+            </div>
+            <div class="col-sm-3">
+
+                <div class="form-group">
+                    <label for="ContactNumber">State</label>
+                    @Html.DropDownListFor(x => x.State, (IEnumerable<SelectListItem>)ViewBag.State,  new { id = "ddlState", @class = "form-control" })
+
+                </div>
+                <div class="form-group">
+                    <label for="ContactNumber">City</label>
+                    <select id="ddlCity" name="city" class="form-control"></select>
+                    @*@Html.DropDownListFor(x => x.City, (IEnumerable<SelectListItem>)ViewBag.State, "Select One", new { id = "ddlState", @class = "form-control" })*@
+
+                </div>
+                <div class="form-group">
+                    <label for="About">About</label>
+                    <textarea id="About" name="About" rows="14" cols="34" placeholder="About"></textarea>
+                </div>
+
+                <input type="submit" class="btn btn-info" value="Create"/>
+            </div>
+
+            <div class="col-sm-3">
+
+
+            </div>
+        </div>
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ddlState').change(function () {
+                var stateId = parseInt($(this).val());
+                $.ajax({
+                    url: '/Lab/FillCity',
+                    type: "GET",
+                    dataType: "JSON",
+                    data: { State: stateId },
+                    success: function (cities) {
+                        $("#ddlCity").html(""); // clear before appending new list
+                        $.each(cities, function (i, city) {
+                            $("#ddlCity").append(
+                                $('<option></option>').val(city.CityId).html(city.CityName));
+                        });
+                    }
+                });
+
+            });
+        });
+    </script>

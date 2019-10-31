@@ -1,0 +1,53 @@
+﻿@model LabProject.Models.ViewModel.VMTest
+@{
+    ViewBag.Title = "Create";
+
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Test"))
+{
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm">
+        <div class="form-group">
+            <label for="TestName">Test Name</label>
+            @Html.TextBoxFor(x => x.TestName, new { @class = "form-control", @placeholder = "Test Name" })
+            @Html.ValidationMessageFor(x => x.TestName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="testduration">Test Report Duration</label>
+
+            @Html.TextBoxFor(m => m.TestReportDuration, new { id = "testduration",placeholder = "Test Report Duration", @class = "form-control input-lg textarea-editor" })
+            @Html.ValidationMessageFor(x => x.TestReportDuration, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            <label for="TestDesc">Pre-Requisites For Test</label>
+
+            @Html.TextAreaFor(m => m.PreRequisite, new { id = "PreRequisite", rows = "5", style = "resize:none;width:400px;", placeholder = Html.DisplayNameFor(m => m.PreRequisite), @class = "form-control input-lg textarea-editor" })
+            @Html.ValidationMessageFor(x => x.PreRequisite, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="form-control bg-success" />
+
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+<script>
+    $('#TestDesc').summernote({
+        placeholder: 'Description of test ',
+        tabsize: 2,
+        height: 100
+    });
+</script>

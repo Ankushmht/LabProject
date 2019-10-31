@@ -1,0 +1,39 @@
+﻿@model LabProject.Models.ViewModel.TestLab
+@{
+                /**/
+
+                ViewBag.Title = "Create";
+
+}
+
+<h2>Set Test Price</h2>
+
+
+@using (Html.BeginForm())
+{
+    
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="ContactNumber">Labs</label>
+                @Html.DropDownListFor(x => x.labId, (IEnumerable<SelectListItem>)ViewBag.labId, "Select One", new { id = "ddlLabs", @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label for="ContactNumber">Tests</label>
+                @Html.DropDownListFor(x => x.testId, (IEnumerable<SelectListItem>)ViewBag.testid, "Select One", new { id = "ddlTests", @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label for="ContactNumber">Price</label>
+                @Html.TextBoxFor(x => x.Price, new { id = "txtPrice", @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+               <input type="submit" value="Submit" class="form-control bg-success" />
+            </div>
+        </div>
+        </div>
+        
+ }

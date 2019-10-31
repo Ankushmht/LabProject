@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LabDataBaseModelStoreContainer" CdmEntityContainer="LabDataBaseEntities">
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="LabDataBaseModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabDetails">
+      <EntityTypeMapping TypeName="LabDataBaseModel.LabDetail">
+        <MappingFragment StoreEntitySet="LabDetails">
+          <ScalarProperty Name="LabId" ColumnName="LabId" />
+          <ScalarProperty Name="LabName" ColumnName="LabName" />
+          <ScalarProperty Name="LabOwnerName" ColumnName="LabOwnerName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="About" ColumnName="About" />
+          <ScalarProperty Name="Add1" ColumnName="Add1" />
+          <ScalarProperty Name="Add2" ColumnName="Add2" />
+          <ScalarProperty Name="Add3" ColumnName="Add3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="LabDataBaseModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestLabPrices">
+      <EntityTypeMapping TypeName="LabDataBaseModel.TestLabPrice">
+        <MappingFragment StoreEntitySet="TestLabPrice">
+          <ScalarProperty Name="TestLabId" ColumnName="TestLabId" />
+          <ScalarProperty Name="LabId" ColumnName="LabId" />
+          <ScalarProperty Name="TestId" ColumnName="TestId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="LabDataBaseModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="PreRequisite" ColumnName="PreRequisite" />
+          <ScalarProperty Name="TestReportDuration" ColumnName="TestReportDuration" />
+          <ScalarProperty Name="TestName" ColumnName="TestName" />
+          <ScalarProperty Name="Testid" ColumnName="Testid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

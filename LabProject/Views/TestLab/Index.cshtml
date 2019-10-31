@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LabProject.Models.ViewModel.TestLab>
+@{
+
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Index", "LabTest", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+        <input type="submit" value="Search" /> <input value="Add Price" type="button" class="btn btn-info btn-circle-xl m-166" onclick="location.href='@Url.Action("Create", "Test")'" />
+
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <th>
+                Test Name
+            </th>
+            <th>
+                lab Name
+            </th>
+            <th>
+                Price
+            </th>
+            @foreach (var tp in Model)
+            {
+                <tr>
+                    <td>@tp.tests.TestName</td>
+                    <td>@tp.Labs.LabName </td>
+                    <td>@tp.Price </td>
+                </tr>
+            }
+
+
+
+        </table>
+    </div>
+}

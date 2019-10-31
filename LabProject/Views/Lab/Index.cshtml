@@ -1,0 +1,86 @@
+﻿@model IEnumerable<LabProject.LabDetail>
+@{
+    ViewBag.Title = "Index";
+    <script src="~/Scripts/owlcarousel/owl.carousel.js"></script>
+    <link rel="stylesheet" href="~/Scripts/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Scripts/owlcarousel/assets/owl.theme.default.min.css">
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Index", "Lab", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+        <input type="submit" value="Search" /> <input value="Add Lab" type="button" class="btn btn-info btn-circle-xl m-166" onclick="location.href='@Url.Action("Create", "Lab" )'" />
+
+    </div>
+    <div class="card-deck">
+        <div class="owl-carousel owl-theme">
+          
+                    @foreach (var lab in Model)
+                    {
+              <div class="card border-success mb-4" style="max-width: 22rem;">
+                            <div class="card-header">
+                                @lab.LabName
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">@lab.LabOwnerName</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="card-link">@lab.ContactNumber</a>
+                                <a href="@Url.Action("LabDetail","Lab", new { labId=lab.LabId})" class="card-link">Learn More</a>
+                                <input value="Edit Lab" type="button" class="btn btn-info btn-circle-xl m-166" onclick="location.href='@Url.Action("Edit", "Lab", new {LabId=lab.LabId} )'" />
+                            </div>
+                        </div>
+
+                    }
+
+        </div>
+    </div>
+
+}
+<script>
+
+    $('.owl-carousel').owlCarousel({
+        loop: false,
+        margin: 10,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 3
+            }
+        }
+    })
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        $("#searchText").keypress(function (event) {
+            if (event.which == 13) {
+                $("#searchButton").click();
+            }
+        });
+    });
+
+    function btnAdvanceSearchClick() {
+        var searchText = $("#searchText").val();
+        alert(searchText);
+        $.ajax({
+            url: '/Lab/Index?searchText=' + searchText,
+            type: "Post",
+            dataType: "JSON",
+            data: { Labtext: searchText },
+            success: function (labview) {
+
+
+            }
+        });
+    }
+</script>
+

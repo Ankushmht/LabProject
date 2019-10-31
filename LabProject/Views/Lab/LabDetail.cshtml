@@ -1,0 +1,24 @@
+﻿@model LabProject.Models.ViewModel.VMLabDetails
+@{
+    ViewBag.Title = "LabDetail";
+
+}
+
+<h2>LabDetail</h2>
+<div>
+    <nav class="navbar bg-dark text-white">
+        <span class="navbar-brand mb-0 h1">@Model.LabName</span>
+        <span class="text-right">Call Us @@ @Model.ContactNumber</span>
+    </nav>
+    <div id="section1" class="container-fluid bg-light" style="padding-top:25px;padding-bottom:25px">
+        <h1>About</h1>
+        <p>@Model.About</p>
+    </div>
+    <div id="section2" class="container-fluid bg-dark text-light" style="padding-top:10px;padding-bottom:10px">
+        <p>@Model.CityName , @Model.StateName</p>
+        <span class="text-right"> @Model.Email</span>
+       
+    </div>
+</div>
+
+

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LabDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="varchar" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+  </EntityType>
+  <EntityType Name="LabDetails">
+    <Key>
+      <PropertyRef Name="LabId" />
+    </Key>
+    <Property Name="LabId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LabName" Type="varchar" MaxLength="50" />
+    <Property Name="LabOwnerName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
+    <Property Name="About" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="Testid" />
+    </Key>
+    <Property Name="Testid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TestName" Type="varchar" MaxLength="50" />
+    <Property Name="TestDesc" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TestLabPrice">
+    <Key>
+      <PropertyRef Name="TestLabId" />
+    </Key>
+    <Property Name="TestLabId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LabId" Type="int" />
+    <Property Name="TestId" Type="int" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <Association Name="FK_City_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestLabPrice_LabDetails">
+    <End Role="LabDetails" Type="Self.LabDetails" Multiplicity="1" />
+    <End Role="TestLabPrice" Type="Self.TestLabPrice" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="LabDetails">
+        <PropertyRef Name="LabId" />
+      </Principal>
+      <Dependent Role="TestLabPrice">
+        <PropertyRef Name="TestLabId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestLabPrice_TestLabPrice">
+    <End Role="Test" Type="Self.Test" Multiplicity="0..1" />
+    <End Role="TestLabPrice" Type="Self.TestLabPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="Testid" />
+      </Principal>
+      <Dependent Role="TestLabPrice">
+        <PropertyRef Name="TestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LabDataBaseModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabDetails" EntityType="Self.LabDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestLabPrice" EntityType="Self.TestLabPrice" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestLabPrice_LabDetails" Association="Self.FK_TestLabPrice_LabDetails">
+      <End Role="LabDetails" EntitySet="LabDetails" />
+      <End Role="TestLabPrice" EntitySet="TestLabPrice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestLabPrice_TestLabPrice" Association="Self.FK_TestLabPrice_TestLabPrice">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="TestLabPrice" EntitySet="TestLabPrice" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
