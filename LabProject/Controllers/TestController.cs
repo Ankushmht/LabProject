@@ -69,8 +69,7 @@ namespace LabProject.Controllers
             Test test = labEnity.Tests.FirstOrDefault(x => x.Testid == tst.Testid);
             test.TestName = tst.TestName;
             test.TestReportDuration = tst.TestReportDuration;
-            test.PreRequisite = tst.PreRequisite;
-            labEnity.SaveChanges();
+           
             return RedirectToAction("Index");
         }
     }
