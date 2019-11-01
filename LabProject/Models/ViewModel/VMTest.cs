@@ -18,5 +18,8 @@ namespace LabProject.Models.ViewModel
         public int? TestReportDuration { get; set; }
         public string PreRequisite { get; set; }
 
+        public IEnumerable<LabDetail> LabDetails { get; set; }
+        public IEnumerable<Test> Tests { get; set; }
+
     }
 }

@@ -25,11 +25,13 @@
             </th>
             @foreach (var tp in Model)
             {
-                <tr>
-                    <td>@tp.tests.TestName</td>
-                    <td>@tp.Labs.LabName </td>
-                    <td>@tp.Price </td>
-                </tr>
+            <tr>
+                <td>@tp.testLabId</td>
+                <td>@tp.tests.TestName</td>
+                <td>@tp.Labs.LabName </td>
+                <td>@tp.Price </td>
+                <td><input value="Edit Lab" type="button" class="btn btn-info btn-circle-xl m-166" onclick="location.href='@Url.Action("Edit", "TestLab", new {testLabId=tp.testLabId} )'" /></td>
+            </tr>
             }
 
 
