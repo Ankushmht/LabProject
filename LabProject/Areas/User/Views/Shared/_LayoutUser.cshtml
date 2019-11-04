@@ -5,6 +5,11 @@
     @RenderSection("head", required: false)
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/owlcarousel/owl.carousel.js"></script>
+    <link rel="stylesheet" href="~/Scripts/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Scripts/owlcarousel/assets/owl.theme.default.min.css">
     <style>
 
         .masthead {
@@ -20,7 +25,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Arora Lab</a>
+            <a class="navbar-brand" href="#">Gas-elec Lab</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -64,9 +69,10 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo ratione cumque magnam enim fugiat reprehenderit expedita.</p>
         </div>
     </section>
-  
+ 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

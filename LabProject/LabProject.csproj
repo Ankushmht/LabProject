@@ -164,6 +164,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\User\Controllers\SimilarTestLabsController.cs" />
     <Compile Include="Areas\User\Controllers\TestController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="City.cs">
@@ -468,6 +469,8 @@
     <Content Include="Areas\User\themes\less\wells.less" />
     <Content Include="Areas\User\Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Areas\User\Views\Test\Index.cshtml" />
+    <Content Include="Areas\User\Views\SimilarTestLabs\Index.cshtml" />
+    <Content Include="Areas\User\Views\SimilarTestLabs\RegisterOrLogin.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />

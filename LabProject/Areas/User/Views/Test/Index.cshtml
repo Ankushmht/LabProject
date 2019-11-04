@@ -28,7 +28,7 @@
                         <p class="card-text">@test.TestReportDuration</p>
                         @*<a href="@Url.Action("LabDetail","Lab", new { labId=test.Testid})" class="card-link">Learn More</a>*@
                         <div class="">
-                            <input value="Select Test" type="button" class="btn btn-info btn-circle-xl m-166" onclick="location.href='@Url.Action("Edit", "Test", new {testId=test.Testid} )'" />
+                            <input value="Select Test" type="button" class="btn btn-info btn-circle-xl m-166" onclick="location.href='@Url.Action("Index", "SimilarTestLabs", new {testId=test.Testid} )'" />
                         </div>
                     </div>
                 </div>
@@ -38,11 +38,7 @@
     </div>
 
 }
-<script src="~/Scripts/jquery-3.0.0.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/Scripts/owlcarousel/owl.carousel.js"></script>
-<link rel="stylesheet" href="~/Scripts/owlcarousel/assets/owl.carousel.min.css">
-<link rel="stylesheet" href="~/Scripts/owlcarousel/assets/owl.theme.default.min.css">
+
 
 <script>
 
@@ -50,6 +46,9 @@
         loop: false,
         margin: 10,
         nav: true,
+        autoplay: true,
+        rewindNav: true,
+        rewindSpeed: 1000,
         responsive: {
             0: {
                 items: 1

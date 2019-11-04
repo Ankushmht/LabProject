@@ -15,5 +15,24 @@ namespace LabProject.Areas.User.Controllers
             List<Test> tests = labEnity.Tests.ToList();
             return View(tests);
         }
+
+        [HttpGet]
+        public ActionResult Index(string Search_Data)
+        {
+
+            List<Test> testView = null;
+            if (Search_Data == "" || Search_Data == null)
+            {
+                testView = labEnity.Tests.ToList();
+
+            }
+            else
+            {
+                testView = labEnity.Tests.Where(x => x.TestName.StartsWith(Search_Data)).ToList();
+            }
+            return View(testView);
+        }
+
+
     }
 }
