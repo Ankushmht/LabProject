@@ -26,8 +26,9 @@
 
                     <td>@tp.Labs.LabName </td>
                     <td>@tp.Price </td>
+                    
                     <td>
-                        <button type="button" class="btn btn-default btn-lg myBtn" data-assigned-id="@tp.tests.Testid" id="myBtn">Book Test</button>
+                        <button type="button" class="btn btn-default btn-lg myBtn" data-assigned-id="@tp.testLabId" id="myBtn_@tp.testLabId">Book Test</button>
 
                     </td>
                 </tr>
@@ -78,9 +79,10 @@
 <script>
     $(document).ready(function () {
         $(".myBtn").click(function () {
-            var testId= $(this).data('assigned-id');
+            var TestLabId = $(this).data('assigned-id'); 3
+            
             if ($('#username').val() != 'user') {
-                callAction(testId);
+                callAction(TestLabId,this);
             }
             else {
                 $("#myModal").modal();
@@ -88,17 +90,20 @@
 
         });
 
-        function callAction(tid) {
-
+        function callAction(TestLabId,btn) {
+            var bookTest = {};
+            bookTest.UserId = 1;
+            bookTest.TestLabId = TestLabId;
             $.ajax({
                 // edit to add steve's suggestion.
                 //url: "/ControllerName/ActionName",
-                url: '@Url.Action("RegisterOrLogin", "SimilarTestLabs")',
-                
+                type: "POST",
+                url: '@Url.Action("BookTest", "SimilarTestLabs")',
+                data: '{bookTest: ' + JSON.stringify(bookTest) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 success: function (data) {
-                    // your data could be a View or Json or what ever you returned in your action method
-                    // parse your data here
-                    alert(data);
+                    $(btn).html('Selected').css('background-color', 'red').css('color', 'white').attr('disabled', true);;
                 }
             });
         }

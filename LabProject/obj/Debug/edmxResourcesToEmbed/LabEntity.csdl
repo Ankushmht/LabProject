@@ -8,7 +8,24 @@
     <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="StateId" Type="Int32" />
     <NavigationProperty Name="State" Relationship="Self.FK_City_State" FromRole="City" ToRole="State" />
-    <NavigationProperty Name="LabDetails" Relationship="LabDataBaseModel.FK_LabDetails_City" FromRole="City" ToRole="LabDetail" />
+  </EntityType>
+  <EntityType Name="LabDetail">
+    <Key>
+      <PropertyRef Name="LabId" />
+    </Key>
+    <Property Name="LabId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LabName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LabOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Add1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Add2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Add3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="Int32" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="State">
     <Key>
@@ -17,7 +34,6 @@
     <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Cities" Relationship="Self.FK_City_State" FromRole="State" ToRole="City" />
-    <NavigationProperty Name="LabDetails" Relationship="LabDataBaseModel.FK_LabDetails_State" FromRole="State" ToRole="LabDetail" />
   </EntityType>
   <EntityType Name="Test">
     <Key>
@@ -25,7 +41,8 @@
     </Key>
     <Property Name="Testid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TestName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="TestDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TestReportDuration" Type="Int32" />
+    <Property Name="PreRequisite" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="TestLabPrices" Relationship="Self.FK_TestLabPrice_TestLabPrice" FromRole="Test" ToRole="TestLabPrice" />
   </EntityType>
   <EntityType Name="TestLabPrice">
@@ -37,7 +54,6 @@
     <Property Name="TestId" Type="Int32" />
     <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
     <NavigationProperty Name="Test" Relationship="Self.FK_TestLabPrice_TestLabPrice" FromRole="TestLabPrice" ToRole="Test" />
-    <NavigationProperty Name="LabDetail" Relationship="LabDataBaseModel.FK_TestLabPrice_LabDetails" FromRole="TestLabPrice" ToRole="LabDetail" />
   </EntityType>
   <Association Name="FK_City_State">
     <End Role="State" Type="Self.State" Multiplicity="0..1" />
@@ -65,6 +81,7 @@
   </Association>
   <EntityContainer Name="LabDataBaseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="LabDetails" EntityType="Self.LabDetail" />
     <EntitySet Name="States" EntityType="Self.State" />
     <EntitySet Name="Tests" EntityType="Self.Test" />
     <EntitySet Name="TestLabPrices" EntityType="Self.TestLabPrice" />
@@ -76,75 +93,14 @@
       <End Role="Test" EntitySet="Tests" />
       <End Role="TestLabPrice" EntitySet="TestLabPrices" />
     </AssociationSet>
-    <EntitySet Name="LabDetails" EntityType="LabDataBaseModel.LabDetail" />
-    <AssociationSet Name="FK_LabDetails_City" Association="LabDataBaseModel.FK_LabDetails_City">
-      <End Role="City" EntitySet="Cities" />
-      <End Role="LabDetail" EntitySet="LabDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LabDetails_State" Association="LabDataBaseModel.FK_LabDetails_State">
-      <End Role="State" EntitySet="States" />
-      <End Role="LabDetail" EntitySet="LabDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TestLabPrice_LabDetails" Association="LabDataBaseModel.FK_TestLabPrice_LabDetails">
-      <End Role="LabDetail" EntitySet="LabDetails" />
-      <End Role="TestLabPrice" EntitySet="TestLabPrices" />
-    </AssociationSet>
+    <EntitySet Name="BookTests" EntityType="LabDataBaseModel.BookTest" />
   </EntityContainer>
-  <EntityType Name="LabDetail">
+  <EntityType Name="BookTest">
     <Key>
-      <PropertyRef Name="LabId" />
+      <PropertyRef Name="BookTestId" />
     </Key>
-    <Property Name="LabId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="LabName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="LabOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Add1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Add2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Add3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="City" Type="Int32" />
-    <Property Name="State" Type="Int32" Nullable="false" />
-    <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="ContactNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="CreatedBy" Type="Int32" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="City1" Relationship="LabDataBaseModel.FK_LabDetails_City" FromRole="LabDetail" ToRole="City" />
-    <NavigationProperty Name="State1" Relationship="LabDataBaseModel.FK_LabDetails_State" FromRole="LabDetail" ToRole="State" />
-    <NavigationProperty Name="TestLabPrices" Relationship="LabDataBaseModel.FK_TestLabPrice_LabDetails" FromRole="LabDetail" ToRole="TestLabPrice" />
+    <Property Name="BookTestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="TestLabId" Type="Int32" />
   </EntityType>
-  <Association Name="FK_LabDetails_City">
-    <End Type="LabDataBaseModel.City" Role="City" Multiplicity="0..1" />
-    <End Type="LabDataBaseModel.LabDetail" Role="LabDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="City">
-        <PropertyRef Name="CityId" />
-      </Principal>
-      <Dependent Role="LabDetail">
-        <PropertyRef Name="City" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LabDetails_State">
-    <End Type="LabDataBaseModel.State" Role="State" Multiplicity="0..1" />
-    <End Type="LabDataBaseModel.LabDetail" Role="LabDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="State">
-        <PropertyRef Name="StateId" />
-      </Principal>
-      <Dependent Role="LabDetail">
-        <PropertyRef Name="State" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TestLabPrice_LabDetails">
-    <End Type="LabDataBaseModel.LabDetail" Role="LabDetail" Multiplicity="0..1" />
-    <End Type="LabDataBaseModel.TestLabPrice" Role="TestLabPrice" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LabDetail">
-        <PropertyRef Name="LabId" />
-      </Principal>
-      <Dependent Role="TestLabPrice">
-        <PropertyRef Name="LabId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

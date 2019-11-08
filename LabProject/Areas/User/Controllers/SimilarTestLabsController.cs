@@ -9,6 +9,7 @@ namespace LabProject.Areas.User.Controllers
 {
     public class SimilarTestLabsController : Controller
     {
+        static List<BookTest> lstBooktest = null;
         readonly LabDataBaseEntities labEntity = new LabDataBaseEntities();
         [HttpGet]
         // GET: User/SimilarTestLabs
@@ -34,9 +35,13 @@ namespace LabProject.Areas.User.Controllers
             return View();
         }
 
-        public void BookTest()
+        public int BookTest(BookTest bookTest)
         {
-           
+            //labEntity.BookTests.Add(bookTest);
+            //labEntity.SaveChanges();
+             lstBooktest = new List<BookTest>();
+            lstBooktest.Add(bookTest);
+            return 0;
         }
     }
 }

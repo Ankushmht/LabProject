@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c53670b6efe24db4800a370caa902ec2" Name="Diagram1">
+      <Diagram DiagramId="62a5a10d4972485dbc04c9dfcba669dd" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="LabDataBaseModel.City" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LabDataBaseModel.LabDetail" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabDataBaseModel.LabDetail" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LabDataBaseModel.State" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabDataBaseModel.Test" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LabDataBaseModel.TestLabPrice" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="LabDataBaseModel.FK_City_State" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LabDataBaseModel.Test" Width="1.5" PointX="0.75" PointY="0.875" />
-        <AssociationConnector Association="LabDataBaseModel.FK_TestLabPrice_TestLabPrice" />
+        <AssociationConnector Association="LabDataBaseModel.FK_TestLabPrice_TestLabPrice" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LabDataBaseModel.BookTest" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

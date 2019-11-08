@@ -167,8 +167,11 @@
     <Compile Include="Areas\User\Controllers\SimilarTestLabsController.cs" />
     <Compile Include="Areas\User\Controllers\TestController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="BookTest.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="City.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -180,22 +183,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LabDetail.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="LabEnity.Context.cs">
+    <Compile Include="LabEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LabEnity.Context.tt</DependentUpon>
+      <DependentUpon>LabEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LabEnity.cs">
+    <Compile Include="LabEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="LabEnity.Designer.cs">
+    <Compile Include="LabEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LabEnity.edmx</DependentUpon>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -206,13 +209,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="State.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Test.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="TestLabPrice.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -366,15 +369,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="LabEnity.Context.tt">
+    <Content Include="LabEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LabEnity.edmx</DependentUpon>
-      <LastGenOutput>LabEnity.Context.cs</LastGenOutput>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+      <LastGenOutput>LabEntity.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LabEnity.tt">
+    <Content Include="LabEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LabEnity.edmx</DependentUpon>
-      <LastGenOutput>LabEnity.cs</LastGenOutput>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+      <LastGenOutput>LabEntity.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -398,13 +401,6 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <EntityDeploy Include="LabEnity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LabEnity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="LabEnity.edmx.diagram">
-      <DependentUpon>LabEnity.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\User\Views\web.config" />
     <Content Include="Areas\User\themes\font\fontawesome-webfont.eot" />
     <Content Include="Areas\User\themes\font\fontawesome-webfont.ttf" />
@@ -471,6 +467,13 @@
     <Content Include="Areas\User\Views\Test\Index.cshtml" />
     <Content Include="Areas\User\Views\SimilarTestLabs\Index.cshtml" />
     <Content Include="Areas\User\Views\SimilarTestLabs\RegisterOrLogin.cshtml" />
+    <EntityDeploy Include="LabEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LabEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="LabEntity.edmx.diagram">
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />

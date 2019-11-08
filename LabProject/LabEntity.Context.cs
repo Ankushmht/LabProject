@@ -28,7 +28,8 @@ namespace LabProject
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<LabDetail> LabDetails { get; set; }
         public virtual DbSet<State> States { get; set; }
-        public virtual DbSet<TestLabPrice> TestLabPrices { get; set; }
         public virtual DbSet<Test> Tests { get; set; }
+        public virtual DbSet<TestLabPrice> TestLabPrices { get; set; }
+        public virtual DbSet<BookTest> BookTests { get; set; }
     }
 }

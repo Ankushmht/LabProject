@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LabDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BookTest">
+    <Key>
+      <PropertyRef Name="BookTestId" />
+    </Key>
+    <Property Name="BookTestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="TestLabId" Type="int" />
+  </EntityType>
   <EntityType Name="City">
     <Key>
       <PropertyRef Name="CityId" />
@@ -13,7 +21,7 @@
       <PropertyRef Name="LabId" />
     </Key>
     <Property Name="LabId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LabName" Type="varchar" MaxLength="50" />
+    <Property Name="LabName" Type="varchar" MaxLength="100" />
     <Property Name="LabOwnerName" Type="varchar" MaxLength="50" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
     <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
@@ -39,7 +47,8 @@
     </Key>
     <Property Name="Testid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TestName" Type="varchar(max)" />
-    <Property Name="TestDesc" Type="varchar(max)" />
+    <Property Name="TestReportDuration" Type="int" />
+    <Property Name="PreRequisite" Type="varchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="TestLabPrice">
     <Key>
@@ -75,6 +84,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="LabDataBaseModelStoreContainer">
+    <EntitySet Name="BookTest" EntityType="Self.BookTest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LabDetails" EntityType="Self.LabDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />

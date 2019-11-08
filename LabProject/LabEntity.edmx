@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="LabDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookTest">
+          <Key>
+            <PropertyRef Name="BookTestId" />
+          </Key>
+          <Property Name="BookTestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="TestLabId" Type="int" />
+        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -18,7 +26,7 @@
             <PropertyRef Name="LabId" />
           </Key>
           <Property Name="LabId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LabName" Type="varchar" MaxLength="50" />
+          <Property Name="LabName" Type="varchar" MaxLength="100" />
           <Property Name="LabOwnerName" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
@@ -81,6 +89,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LabDataBaseModelStoreContainer">
+          <EntitySet Name="BookTest" EntityType="Self.BookTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LabDetails" EntityType="Self.LabDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
@@ -113,7 +122,7 @@
             <PropertyRef Name="LabId" />
           </Key>
           <Property Name="LabId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LabName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LabName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LabOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ContactNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -134,6 +143,16 @@
           <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cities" Relationship="Self.FK_City_State" FromRole="State" ToRole="City" />
         </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Testid" />
+          </Key>
+          <Property Name="Testid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TestReportDuration" Type="Int32" />
+          <Property Name="PreRequisite" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TestLabPrices" Relationship="Self.FK_TestLabPrice_TestLabPrice" FromRole="Test" ToRole="TestLabPrice" />
+        </EntityType>
         <EntityType Name="TestLabPrice">
           <Key>
             <PropertyRef Name="TestLabId" />
@@ -142,7 +161,7 @@
           <Property Name="LabId" Type="Int32" />
           <Property Name="TestId" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="Test" Relationship="LabDataBaseModel.FK_TestLabPrice_TestLabPrice" FromRole="TestLabPrice" ToRole="Test" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_TestLabPrice_TestLabPrice" FromRole="TestLabPrice" ToRole="Test" />
         </EntityType>
         <Association Name="FK_City_State">
           <End Role="State" Type="Self.State" Multiplicity="0..1" />
@@ -156,34 +175,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LabDataBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cities" EntityType="Self.City" />
-          <EntitySet Name="LabDetails" EntityType="Self.LabDetail" />
-          <EntitySet Name="States" EntityType="Self.State" />
-          <EntitySet Name="TestLabPrices" EntityType="Self.TestLabPrice" />
-          <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
-            <End Role="State" EntitySet="States" />
-            <End Role="City" EntitySet="Cities" />
-          </AssociationSet>
-          <EntitySet Name="Tests" EntityType="LabDataBaseModel.Test" />
-          <AssociationSet Name="FK_TestLabPrice_TestLabPrice" Association="LabDataBaseModel.FK_TestLabPrice_TestLabPrice">
-            <End Role="Test" EntitySet="Tests" />
-            <End Role="TestLabPrice" EntitySet="TestLabPrices" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Test">
-          <Key>
-            <PropertyRef Name="Testid" />
-          </Key>
-          <Property Name="Testid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TestName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TestReportDuration" Type="Int32" />
-          <Property Name="PreRequisite" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TestLabPrices" Relationship="LabDataBaseModel.FK_TestLabPrice_TestLabPrice" FromRole="Test" ToRole="TestLabPrice" />
-        </EntityType>
         <Association Name="FK_TestLabPrice_TestLabPrice">
-          <End Type="LabDataBaseModel.Test" Role="Test" Multiplicity="0..1" />
-          <End Type="LabDataBaseModel.TestLabPrice" Role="TestLabPrice" Multiplicity="*" />
+          <End Role="Test" Type="Self.Test" Multiplicity="0..1" />
+          <End Role="TestLabPrice" Type="Self.TestLabPrice" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Test">
               <PropertyRef Name="Testid" />
@@ -193,6 +187,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="LabDataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="LabDetails" EntityType="Self.LabDetail" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Tests" EntityType="Self.Test" />
+          <EntitySet Name="TestLabPrices" EntityType="Self.TestLabPrice" />
+          <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestLabPrice_TestLabPrice" Association="Self.FK_TestLabPrice_TestLabPrice">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestLabPrice" EntitySet="TestLabPrices" />
+          </AssociationSet>
+          <EntitySet Name="BookTests" EntityType="LabDataBaseModel.BookTest" />
+        </EntityContainer>
+        <EntityType Name="BookTest">
+          <Key>
+            <PropertyRef Name="BookTestId" />
+          </Key>
+          <Property Name="BookTestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="TestLabId" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -235,6 +253,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="LabDataBaseModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Testid" ColumnName="Testid" />
+                <ScalarProperty Name="TestName" ColumnName="TestName" />
+                <ScalarProperty Name="TestReportDuration" ColumnName="TestReportDuration" />
+                <ScalarProperty Name="PreRequisite" ColumnName="PreRequisite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TestLabPrices">
             <EntityTypeMapping TypeName="LabDataBaseModel.TestLabPrice">
               <MappingFragment StoreEntitySet="TestLabPrice">
@@ -245,13 +273,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tests">
-            <EntityTypeMapping TypeName="LabDataBaseModel.Test">
-              <MappingFragment StoreEntitySet="Test">
-                <ScalarProperty Name="PreRequisite" ColumnName="PreRequisite" />
-                <ScalarProperty Name="TestReportDuration" ColumnName="TestReportDuration" />
-                <ScalarProperty Name="TestName" ColumnName="TestName" />
-                <ScalarProperty Name="Testid" ColumnName="Testid" />
+          <EntitySetMapping Name="BookTests">
+            <EntityTypeMapping TypeName="LabDataBaseModel.BookTest">
+              <MappingFragment StoreEntitySet="BookTest">
+                <ScalarProperty Name="TestLabId" ColumnName="TestLabId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BookTestId" ColumnName="BookTestId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
