@@ -16,16 +16,23 @@ namespace LabProject.Models.ViewModel
 
         [Required(ErrorMessage = "Lab Owner Name is Required")]
         public string LabOwnerName { get; set; }
+
         [Required(ErrorMessage = "Email is Required")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Contact Number is Required")]
         public string ContactNumber { get; set; }
+
         public Nullable<int> CreatedBy { get; set; }
+
         public Nullable<System.DateTime> CreatedDate { get; set; }
+
         public string About { get; set; }
+
         public string Add1 { get; set; }
+
         public string Add2 { get; set; }
+
         public string Add3 { get; set; }
 
         public string CityName { get; set; }

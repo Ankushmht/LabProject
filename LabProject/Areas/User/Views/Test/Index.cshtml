@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LabProject.Test>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/User/Views/Shared/_LayoutUser.cshtml";
+
+
+}
+
+<h1>Search Test</h1>
+
+@using (Html.BeginForm("Index", "Test", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+        <input type="submit" value="Search" /> 
+
+    </div>
+    <div class="card-deck">
+        <div class="owl-carousel owl-theme">
+            @foreach (var test in Model)
+            {
+                <div class="card border-success mb-4" style="max-width: 22rem;">
+                    <div class="card-header">
+                        @test.TestName
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">@test.TestReportDuration</h6>
+                        <p class="card-text">@test.TestReportDuration</p>
+                        @*<a href="@Url.Action("LabDetail","Lab", new { labId=test.Testid})" class="card-link">Learn More</a>*@
+                        <div class="">
+                            <input value="Select Test" type="button" class="btn btn-info btn-circle-xl m-166" onclick="location.href='@Url.Action("Index", "SimilarTestLabs", new {testId=test.Testid} )'" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+}
+
+
+<script>
+
+    $('.owl-carousel').owlCarousel({
+        loop: false,
+        margin: 10,
+        nav: true,
+        autoplay: true,
+        rewindNav: true,
+        rewindSpeed: 1000,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 3
+            }
+        }
+    })
+
+
+</script>
+

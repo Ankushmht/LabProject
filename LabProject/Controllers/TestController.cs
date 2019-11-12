@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -60,6 +60,17 @@ namespace LabProject.Controllers
                                     PreRequisite = t.PreRequisite
                                 }).ToList().FirstOrDefault();
             return View(tests);
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(Test tst)
+        {
+            Test test = labEnity.Tests.FirstOrDefault(x => x.Testid == tst.Testid);
+            test.TestName = tst.TestName;
+            test.TestReportDuration = tst.TestReportDuration;
+           
+            return RedirectToAction("Index");
         }
     }
 

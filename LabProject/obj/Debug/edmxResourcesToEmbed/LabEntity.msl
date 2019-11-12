@@ -10,6 +10,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LabDetails">
+      <EntityTypeMapping TypeName="LabDataBaseModel.LabDetail">
+        <MappingFragment StoreEntitySet="LabDetails">
+          <ScalarProperty Name="LabId" ColumnName="LabId" />
+          <ScalarProperty Name="LabName" ColumnName="LabName" />
+          <ScalarProperty Name="LabOwnerName" ColumnName="LabOwnerName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="About" ColumnName="About" />
+          <ScalarProperty Name="Add1" ColumnName="Add1" />
+          <ScalarProperty Name="Add2" ColumnName="Add2" />
+          <ScalarProperty Name="Add3" ColumnName="Add3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="States">
       <EntityTypeMapping TypeName="LabDataBaseModel.State">
         <MappingFragment StoreEntitySet="State">
@@ -23,7 +42,8 @@
         <MappingFragment StoreEntitySet="Test">
           <ScalarProperty Name="Testid" ColumnName="Testid" />
           <ScalarProperty Name="TestName" ColumnName="TestName" />
-          <ScalarProperty Name="TestDesc" ColumnName="TestDesc" />
+          <ScalarProperty Name="TestReportDuration" ColumnName="TestReportDuration" />
+          <ScalarProperty Name="PreRequisite" ColumnName="PreRequisite" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -37,22 +57,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LabDetails">
-      <EntityTypeMapping TypeName="LabDataBaseModel.LabDetail">
-        <MappingFragment StoreEntitySet="LabDetails">
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-          <ScalarProperty Name="About" ColumnName="About" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Add3" ColumnName="Add3" />
-          <ScalarProperty Name="Add2" ColumnName="Add2" />
-          <ScalarProperty Name="Add1" ColumnName="Add1" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="LabOwnerName" ColumnName="LabOwnerName" />
-          <ScalarProperty Name="LabName" ColumnName="LabName" />
-          <ScalarProperty Name="LabId" ColumnName="LabId" />
+    <EntitySetMapping Name="BookTests">
+      <EntityTypeMapping TypeName="LabDataBaseModel.BookTest">
+        <MappingFragment StoreEntitySet="BookTest">
+          <ScalarProperty Name="TestLabId" ColumnName="TestLabId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BookTestId" ColumnName="BookTestId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -164,8 +164,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\User\Controllers\SimilarTestLabsController.cs" />
+    <Compile Include="Areas\User\Controllers\TestController.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="BookTest.cs">
+      <DependentUpon>LabEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="City.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -177,22 +183,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LabDetail.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="LabEnity.Context.cs">
+    <Compile Include="LabEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LabEnity.Context.tt</DependentUpon>
+      <DependentUpon>LabEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LabEnity.cs">
+    <Compile Include="LabEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="LabEnity.Designer.cs">
+    <Compile Include="LabEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LabEnity.edmx</DependentUpon>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -203,16 +209,157 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="State.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Test.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="TestLabPrice.cs">
-      <DependentUpon>LabEnity.tt</DependentUpon>
+      <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\User\themes\amelia\bootstrap.css" />
+    <Content Include="Areas\User\themes\amelia\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\bootshop\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\businessltd\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\cerulean\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\css\base.css" />
+    <Content Include="Areas\User\themes\css\bootstrap-responsive.min.css" />
+    <Content Include="Areas\User\themes\css\font-awesome-ie7.css" />
+    <Content Include="Areas\User\themes\css\font-awesome.css" />
+    <Content Include="Areas\User\themes\cyborg\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\font\fontawesome-webfont.svg" />
+    <Content Include="Areas\User\themes\images\arrowD.png" />
+    <Content Include="Areas\User\themes\images\arrowD~.png" />
+    <Content Include="Areas\User\themes\images\arrowR.png" />
+    <Content Include="Areas\User\themes\images\arrowR~.png" />
+    <Content Include="Areas\User\themes\images\carousel\1.png" />
+    <Content Include="Areas\User\themes\images\carousel\2.png" />
+    <Content Include="Areas\User\themes\images\carousel\3.png" />
+    <Content Include="Areas\User\themes\images\carousel\4.png" />
+    <Content Include="Areas\User\themes\images\carousel\5.png" />
+    <Content Include="Areas\User\themes\images\carousel\6.png" />
+    <Content Include="Areas\User\themes\images\carousel\7.png" />
+    <Content Include="Areas\User\themes\images\facebook.png" />
+    <Content Include="Areas\User\themes\images\headerRepeat.png" />
+    <Content Include="Areas\User\themes\images\ico-cart.png" />
+    <Content Include="Areas\User\themes\images\ico\apple-touch-icon-114-precomposed.png" />
+    <Content Include="Areas\User\themes\images\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="Areas\User\themes\images\ico\apple-touch-icon-57-precomposed.png" />
+    <Content Include="Areas\User\themes\images\ico\apple-touch-icon-72-precomposed.png" />
+    <Content Include="Areas\User\themes\images\ico\favicon.ico" />
+    <Content Include="Areas\User\themes\images\lightbox\Close.png" />
+    <Content Include="Areas\User\themes\images\lightbox\lightbox-blank.gif" />
+    <Content Include="Areas\User\themes\images\lightbox\lightbox-btn-close.gif" />
+    <Content Include="Areas\User\themes\images\lightbox\lightbox-btn-next.gif" />
+    <Content Include="Areas\User\themes\images\lightbox\lightbox-btn-prev.gif" />
+    <Content Include="Areas\User\themes\images\lightbox\lightbox-ico-loading.gif" />
+    <Content Include="Areas\User\themes\images\logo.png" />
+    <Content Include="Areas\User\themes\images\logo_bootshop.png" />
+    <Content Include="Areas\User\themes\images\logo~.png" />
+    <Content Include="Areas\User\themes\images\new.png" />
+    <Content Include="Areas\User\themes\images\payment_methods.png" />
+    <Content Include="Areas\User\themes\images\products\1.jpg" />
+    <Content Include="Areas\User\themes\images\products\10.jpg" />
+    <Content Include="Areas\User\themes\images\products\11.jpg" />
+    <Content Include="Areas\User\themes\images\products\12.jpg" />
+    <Content Include="Areas\User\themes\images\products\13.jpg" />
+    <Content Include="Areas\User\themes\images\products\2.jpg" />
+    <Content Include="Areas\User\themes\images\products\3.jpg" />
+    <Content Include="Areas\User\themes\images\products\4.jpg" />
+    <Content Include="Areas\User\themes\images\products\5.jpg" />
+    <Content Include="Areas\User\themes\images\products\6.jpg" />
+    <Content Include="Areas\User\themes\images\products\7.jpg" />
+    <Content Include="Areas\User\themes\images\products\8.jpg" />
+    <Content Include="Areas\User\themes\images\products\9.jpg" />
+    <Content Include="Areas\User\themes\images\products\b1.jpg" />
+    <Content Include="Areas\User\themes\images\products\b2.jpg" />
+    <Content Include="Areas\User\themes\images\products\b3.jpg" />
+    <Content Include="Areas\User\themes\images\products\b4.jpg" />
+    <Content Include="Areas\User\themes\images\products\kindle.png" />
+    <Content Include="Areas\User\themes\images\products\large\1.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\10.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\11.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\12.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\2.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\3.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\4.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\44.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\6.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\7.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\8.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\9.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\f1.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\f2.jpg" />
+    <Content Include="Areas\User\themes\images\products\large\f3.jpg" />
+    <Content Include="Areas\User\themes\images\products\panasonic.jpg" />
+    <Content Include="Areas\User\themes\images\rss.png" />
+    <Content Include="Areas\User\themes\images\search.png" />
+    <Content Include="Areas\User\themes\images\seperator.png" />
+    <Content Include="Areas\User\themes\images\tabRepeatInactive.png" />
+    <Content Include="Areas\User\themes\images\twitter.png" />
+    <Content Include="Areas\User\themes\images\youtube.png" />
+    <Content Include="Areas\User\themes\img\glyphicons-halflings-white.png" />
+    <Content Include="Areas\User\themes\img\glyphicons-halflings.png" />
+    <Content Include="Areas\User\themes\journal\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\js\bootshop.js" />
+    <Content Include="Areas\User\themes\js\bootstrap.min.js" />
+    <Content Include="Areas\User\themes\js\google-code-prettify\prettify.css" />
+    <Content Include="Areas\User\themes\js\google-code-prettify\prettify.js" />
+    <Content Include="Areas\User\themes\js\jquery.js" />
+    <Content Include="Areas\User\themes\js\jquery.lightbox-0.5.js" />
+    <Content Include="Areas\User\themes\js\less.js" />
+    <Content Include="Areas\User\themes\readable\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\simplex\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\slate\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\spacelab\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\spruce\bootstrap.css" />
+    <Content Include="Areas\User\themes\spruce\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\superhero\bootstrap.min.css" />
+    <Content Include="Areas\User\themes\switch\images\clr\amelia.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\bootshop.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\businessltd.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\cerulean.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\cyborg.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\journal.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\readable.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\simplex.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\slate.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\spacelab.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\spruce.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\superhero.png" />
+    <Content Include="Areas\User\themes\switch\images\clr\united.png" />
+    <Content Include="Areas\User\themes\switch\images\hideme.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern1.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern10.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern11.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern12.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern13.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern14.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern15.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern16.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern16~.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern17.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern17~.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern18.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern19.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern19~.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern2.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern20.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern20~.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern3.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern4.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern5.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern6.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern7.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern8.png" />
+    <Content Include="Areas\User\themes\switch\images\pattern\pattern9.png" />
+    <Content Include="Areas\User\themes\switch\images\styleTgl.png" />
+    <Content Include="Areas\User\themes\switch\theamswitcher.js" />
+    <Content Include="Areas\User\themes\switch\themeswitch.css" />
+    <Content Include="Areas\User\themes\united\bootstrap.min.css" />
+    <Content Include="Areas\User\Views\index.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -222,15 +369,15 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="LabEnity.Context.tt">
+    <Content Include="LabEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LabEnity.edmx</DependentUpon>
-      <LastGenOutput>LabEnity.Context.cs</LastGenOutput>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+      <LastGenOutput>LabEntity.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LabEnity.tt">
+    <Content Include="LabEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LabEnity.edmx</DependentUpon>
-      <LastGenOutput>LabEnity.cs</LastGenOutput>
+      <DependentUpon>LabEntity.edmx</DependentUpon>
+      <LastGenOutput>LabEntity.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -254,12 +401,78 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <EntityDeploy Include="LabEnity.edmx">
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\themes\font\fontawesome-webfont.eot" />
+    <Content Include="Areas\User\themes\font\fontawesome-webfont.ttf" />
+    <Content Include="Areas\User\themes\font\fontawesome-webfont.woff" />
+    <Content Include="Areas\User\themes\font\museo_slab_300-webfont.eot" />
+    <Content Include="Areas\User\themes\font\museo_slab_300-webfont.ttf" />
+    <Content Include="Areas\User\themes\font\museo_slab_500-webfont.eot" />
+    <Content Include="Areas\User\themes\font\museo_slab_500-webfont.ttf" />
+    <Content Include="Areas\User\themes\font\proximanova-webfont.eot" />
+    <Content Include="Areas\User\themes\font\proximanova-webfont.ttf" />
+    <Content Include="Areas\User\themes\less\accordion.less" />
+    <Content Include="Areas\User\themes\less\alerts.less" />
+    <Content Include="Areas\User\themes\less\amelia.less" />
+    <Content Include="Areas\User\themes\less\amelia\bootswatch.less" />
+    <Content Include="Areas\User\themes\less\amelia\variables.less" />
+    <Content Include="Areas\User\themes\less\bootshop.less" />
+    <Content Include="Areas\User\themes\less\bootshop\main.less" />
+    <Content Include="Areas\User\themes\less\bootshop\variables.less" />
+    <Content Include="Areas\User\themes\less\bootstrap.less" />
+    <Content Include="Areas\User\themes\less\breadcrumbs.less" />
+    <Content Include="Areas\User\themes\less\button-groups.less" />
+    <Content Include="Areas\User\themes\less\buttons.less" />
+    <Content Include="Areas\User\themes\less\carousel.less" />
+    <Content Include="Areas\User\themes\less\classified.less" />
+    <Content Include="Areas\User\themes\less\close.less" />
+    <Content Include="Areas\User\themes\less\code.less" />
+    <Content Include="Areas\User\themes\less\component-animations.less" />
+    <Content Include="Areas\User\themes\less\dropdowns.less" />
+    <Content Include="Areas\User\themes\less\font-awesome-ie7.less" />
+    <Content Include="Areas\User\themes\less\font-awesome.less" />
+    <Content Include="Areas\User\themes\less\forms.less" />
+    <Content Include="Areas\User\themes\less\grid.less" />
+    <Content Include="Areas\User\themes\less\hero-unit.less" />
+    <Content Include="Areas\User\themes\less\labels-badges.less" />
+    <Content Include="Areas\User\themes\less\layouts.less" />
+    <Content Include="Areas\User\themes\less\mixins.less" />
+    <Content Include="Areas\User\themes\less\modals.less" />
+    <Content Include="Areas\User\themes\less\navbar.less" />
+    <Content Include="Areas\User\themes\less\navs.less" />
+    <Content Include="Areas\User\themes\less\pager.less" />
+    <Content Include="Areas\User\themes\less\pagination.less" />
+    <Content Include="Areas\User\themes\less\popovers.less" />
+    <Content Include="Areas\User\themes\less\progress-bars.less" />
+    <Content Include="Areas\User\themes\less\reset.less" />
+    <Content Include="Areas\User\themes\less\responsive-1200px-min.less" />
+    <Content Include="Areas\User\themes\less\responsive-767px-max.less" />
+    <Content Include="Areas\User\themes\less\responsive-768px-979px.less" />
+    <Content Include="Areas\User\themes\less\responsive-navbar.less" />
+    <Content Include="Areas\User\themes\less\responsive-utilities.less" />
+    <Content Include="Areas\User\themes\less\responsive.less" />
+    <Content Include="Areas\User\themes\less\scaffolding.less" />
+    <Content Include="Areas\User\themes\less\simplex.less" />
+    <Content Include="Areas\User\themes\less\simplex\bootswatch.less" />
+    <Content Include="Areas\User\themes\less\simplex\variables.less" />
+    <Content Include="Areas\User\themes\less\sprites.less" />
+    <Content Include="Areas\User\themes\less\tables.less" />
+    <Content Include="Areas\User\themes\less\thumbnails.less" />
+    <Content Include="Areas\User\themes\less\tooltip.less" />
+    <Content Include="Areas\User\themes\less\type.less" />
+    <Content Include="Areas\User\themes\less\utilities.less" />
+    <Content Include="Areas\User\themes\less\variables.less" />
+    <Content Include="Areas\User\themes\less\wells.less" />
+    <Content Include="Areas\User\Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Areas\User\Views\Test\Index.cshtml" />
+    <Content Include="Areas\User\Views\SimilarTestLabs\Index.cshtml" />
+    <Content Include="Areas\User\Views\SimilarTestLabs\RegisterOrLogin.cshtml" />
+    <EntityDeploy Include="LabEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LabEnity.Designer.cs</LastGenOutput>
+      <LastGenOutput>LabEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="LabEnity.edmx.diagram">
-      <DependentUpon>LabEnity.edmx</DependentUpon>
+    <Content Include="LabEntity.edmx.diagram">
+      <DependentUpon>LabEntity.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
@@ -350,10 +563,12 @@
     <Content Include="Views\TestLab\Create.cshtml" />
     <Content Include="Views\TestLab\Index.cshtml" />
     <Content Include="Views\Lab\Edit.cshtml" />
-    <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\TestLab\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\themes\less\oregional\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

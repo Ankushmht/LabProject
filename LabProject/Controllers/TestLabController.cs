@@ -19,6 +19,7 @@ namespace LabProject.Controllers
                        join t in labEntity.Tests on labt.TestId equals t.Testid
                        select new TestLab
                        {
+                           testLabId=labt.TestLabId,
                            tests = t,
                            Labs =lab,
                            Price=labt.Price
@@ -43,6 +44,34 @@ namespace LabProject.Controllers
             return View();
         }
 
-      
+        public ActionResult Edit(int testLabId)
+        {
+            ViewBag.labs = new SelectList(labEntity.LabDetails, "LabId", "LabName", "--Select One--");
+            ViewBag.tests = new SelectList(labEntity.Tests, "TestId", "testName", "--Select One--");
+            TestLab testlab;
+            testlab = (from labt in labEntity.TestLabPrices
+                       join lab in labEntity.LabDetails on labt.LabId equals lab.LabId
+                       join t in labEntity.Tests on labt.TestId equals t.Testid
+                       where labt.TestLabId== testLabId
+                       select new TestLab
+                       {
+                           testLabId=labt.TestLabId,
+                           tests = t,
+                           Labs = lab,
+                           Price = labt.Price
+                       }).ToList().FirstOrDefault();
+            return View(testlab);
+           
+        }
+
+        [HttpPost]
+        public ActionResult Edit(TestLab testLab)
+        {
+            TestLabPrice tl =labEntity.TestLabPrices.FirstOrDefault(x => x.TestLabId == testLab.testLabId);
+            tl.Price = testLab.Price;
+            labEntity.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }
