@@ -1,8 +1,35 @@
-﻿
+﻿@model IEnumerable<LabProject.Models.ViewModel.TestLab>
 @{
-    ViewBag.Title = "GetCart";
+
+    ViewBag.Title = "Index";
     Layout = "~/Areas/User/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>GetCart</h2>
+<h2>Cart</h2>
+@using (Html.BeginForm("Index", "LabTest", FormMethod.Get))
+{
+       <div class="table-responsive">
+        <table class="table">
+            <th>
+                Test Name
+            </th>
+            <th>
+                lab Name
+            </th>
+            <th>
+                Price
+            </th>
+            @foreach (var tp in Model)
+            {
+                <tr>
 
+                    <td>@tp.tests.TestName</td>
+                    <td>@tp.Labs.LabName </td>
+                    <td>₹@tp.Price </td>
+                </tr>
+            }
+
+        </table>
+        <p class="text-right"> Total = ₹@ViewBag.Total</p>
+    </div>
+}
