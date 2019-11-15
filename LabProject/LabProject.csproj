@@ -174,6 +174,7 @@
       <DependentUpon>LabEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\User\Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LabController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -474,6 +475,7 @@
     <Content Include="LabEntity.edmx.diagram">
       <DependentUpon>LabEntity.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\User\Views\Cart\GetCart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
@@ -569,6 +571,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Areas\User\themes\less\oregional\" />
+    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

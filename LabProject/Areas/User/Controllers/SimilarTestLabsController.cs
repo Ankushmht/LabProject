@@ -9,8 +9,9 @@ namespace LabProject.Areas.User.Controllers
 {
     public class SimilarTestLabsController : Controller
     {
-        static List<BookTest> lstBooktest = null;
+        static List<BookTest> lstBooktest = new List<BookTest>();
         readonly LabDataBaseEntities labEntity = new LabDataBaseEntities();
+        Random rnd = new Random();
         [HttpGet]
         // GET: User/SimilarTestLabs
         public ActionResult Index(int testId)
@@ -37,10 +38,9 @@ namespace LabProject.Areas.User.Controllers
 
         public int BookTest(BookTest bookTest)
         {
-            //labEntity.BookTests.Add(bookTest);
-            //labEntity.SaveChanges();
-             lstBooktest = new List<BookTest>();
+            bookTest.UserId =Convert.ToInt32(Request.Cookies["userId"].Value);
             lstBooktest.Add(bookTest);
+            Session["lstBookTest"] = lstBooktest;
             return 0;
         }
     }

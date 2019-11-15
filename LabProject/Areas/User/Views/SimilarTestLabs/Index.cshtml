@@ -26,10 +26,8 @@
 
                     <td>@tp.Labs.LabName </td>
                     <td>@tp.Price </td>
-                    
                     <td>
                         <button type="button" class="btn btn-default btn-lg myBtn" data-assigned-id="@tp.testLabId" id="myBtn_@tp.testLabId">Book Test</button>
-
                     </td>
                 </tr>
             }
@@ -103,12 +101,21 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    $(btn).html('Selected').css('background-color', 'red').css('color', 'white').attr('disabled', true);;
+                    $(btn).html('Selected').css('background-color', 'red').css('color', 'white').attr('disabled', true);
+                   
                 }
             });
         }
 
     });
+
+    function CreateGuid() {
+        function _p8(s) {
+            var p = (Math.random().toString(16) + "000000000").substr(2, 8);
+            return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+        }
+        return _p8() + _p8(true) + _p8(true) + _p8();
+    } 
 </script>
 <style>
 

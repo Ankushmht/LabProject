@@ -20,5 +20,6 @@ namespace LabProject
         public Nullable<decimal> Price { get; set; }
     
         public virtual Test Test { get; set; }
+        public virtual LabDetail Labs { get; set; }
     }
 }
